@@ -1,0 +1,20 @@
+{
+  "name": "ex07",
+  "version": "1.0.0",
+  "description": "- Processes involved in creating a simple one-off a.k.a. ad-hoc solution to a problem - Processes involved in documenting a solution with enough detail for others to replicate",
+  "homepage": "https://github.com/ColinChomas/iste422_ex07#readme",
+  "bugs": {
+    "url": "https://github.com/ColinChomas/iste422_ex07/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColinChomas/iste422_ex07.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "generateCsv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
