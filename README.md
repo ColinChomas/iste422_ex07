@@ -36,6 +36,7 @@ Note that the generated csv files are not required to be submitted
 - I will be running your command/script/application to verify your results; it's not sufficient that it runs on your system or on a private server or RIT app server.
 - Your solution can be a simple script, or can be a complicated environment (e.g. an app running inside a container like Docker), but a more complex solution may require more description of how to set it up and run it.
 
-# run
+# how to run
 
+in bash
 node generateCsv.js
