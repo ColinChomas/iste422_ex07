@@ -1,6 +1,4 @@
 const fs = require('fs');
-const path = "./pii-data.json"; // Adjusted to relative path
-
 
 function getFormattedDate() {
     const date = new Date();
@@ -10,7 +8,7 @@ function getFormattedDate() {
     return `${year}${month}${day}`;
 }
 
-async function generateCsv() {
+async function generateCsv(filePath) {
     const date = getFormattedDate();
     const ccFilePath = `${date}_CC.csv`;
     const ssnFilePath = `${date}_SSN.csv`;
@@ -21,19 +19,33 @@ async function generateCsv() {
     ccStream.write('Name, Credit Card\n');
     ssnStream.write('Name, SSN\n');
 
-    // Read and parse the JSON file
-    const rawData = fs.readFileSync(path, 'utf-8');
-    const data = JSON.parse(rawData);
+    try {
+        // Read and parse the JSON file
+        const rawData = fs.readFileSync(filePath, 'utf-8');
+        const data = JSON.parse(rawData);
 
-    data.forEach((item) => {
-        if (item.creditcard) {
-            ccStream.write(`${item.name}, ${item.creditcard}\n`);
-        }
-        ssnStream.write(`${item.name}, ${item.ssn}\n`);
-    });
+        data.forEach((item) => {
+            if (item.creditcard) {
+                ccStream.write(`${item.name}, ${item.creditcard}\n`);
+            }
+            ssnStream.write(`${item.name}, ${item.ssn}\n`);
+        });
 
-    ccStream.end();
-    ssnStream.end();
+        console.log(`CSV files generated: ${ccFilePath}, ${ssnFilePath}`);
+    } catch (error) {
+        console.error('Error reading or processing the file:', error.message);
+    } finally {
+        ccStream.end();
+        ssnStream.end();
+    }
 }
 
-generateCsv();
+// Get the file path from the command-line arguments
+const filePath = process.argv[2];
+
+if (!filePath) {
+    console.error('Please provide the path to the JSON file as an argument.');
+    process.exit(1);
+}
+
+generateCsv(filePath);
