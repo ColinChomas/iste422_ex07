@@ -39,4 +39,7 @@ Note that the generated csv files are not required to be submitted
 # how to run
 
 in bash
-node generateCsv.js
+node generateCsv.js [data-file]
+
+example:
+node generateCsv.js pii-data.json
